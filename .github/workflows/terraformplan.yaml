@@ -9,7 +9,7 @@ on:
     types: [edited, opened, synchronize, reopened]
 
 env:
-  SPECTROCLOUD_TF_PATH: .
+  SPECTROCLOUD_TF_PATH: tf-scripts
   SPECTROCLOUD_WORKSPACE: default
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -24,6 +24,13 @@ jobs:
         working-directory: ${{ env.SPECTROCLOUD_TF_PATH }}
     steps:
     - uses: actions/checkout@v2
+      with:
+        repository: spectrocloud/gitops-tf-scripts
+        path: tf-scripts
+    - uses: actions/checkout@v2
+      with:
+        path: tf-scripts/config
+
     - uses: hashicorp/setup-terraform@v1
 
     - name: Terraform fmt
