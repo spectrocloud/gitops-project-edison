@@ -1,4 +1,4 @@
-name: eks-dev-2
+name: eks-dev-3
 cloud_account: aws-account-1
 profiles:
 - name: ProdEKS-1
@@ -20,14 +20,6 @@ node_groups:
     us-west-2a: subnet-07f0af093b8233990
     us-west-2b: subnet-0e0d96dc7ad3f02a5
     us-west-2c: subnet-09e74165071ce03e6
-- name: worker-basic2
-  count: 1
-  disk_size_gb: 61
-  instance_type: t3.xlarge
-  worker_subnets:
-    us-west-2a: subnet-07f0af093b8233990
-    us-west-2b: subnet-0e0d96dc7ad3f02a5
-    us-west-2c: subnet-09e74165071ce03e6
 fargate_profiles:
 - name: fg-1
   subnets:
@@ -45,7 +37,6 @@ rbac:
     subjects:
     - {type: User, name: user6}
     - {type: Group, name: group6}
-    - {type: Group, name: group7}
     - {type: ServiceAccount, name: group6, namespace: foo}
   namespaces:
   - namespace: team2
