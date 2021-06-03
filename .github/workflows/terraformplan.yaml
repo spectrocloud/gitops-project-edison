@@ -24,6 +24,7 @@ jobs:
         working-directory: ${{ env.SPECTROCLOUD_TF_PATH }}
     steps:
     - uses: actions/checkout@v2
+      with:
         repository: spectrocloud/gitops-tf-scripts
         path: tf-scripts
     - uses: actions/checkout@v2
