@@ -13,7 +13,7 @@ on:
     #types: [edited, opened, synchronize, reopened]
 
 env:
-  SPECTROCLOUD_TF_PATH: sandbox
+  SPECTROCLOUD_TF_PATH: .
   SPECTROCLOUD_WORKSPACE: default
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -21,7 +21,8 @@ jobs:
   # This workflow contains a single job called "greet"
   apply:
     # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
+    # runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: ${{ env.SPECTROCLOUD_TF_PATH }}
@@ -36,7 +37,8 @@ jobs:
 
     - name: Terraform Init
       id: init
-      run: terraform init -backend-config="endpoints=[\"${{ secrets.SC_ETCD_ENDPOINT }}\"]"
+      run: terraform init
+      # run: terraform init -backend-config="endpoints=[\"${{ secrets.SC_ETCD_ENDPOINT }}\"]"
 
     - name: Terraform Workspace
       id: workspace
