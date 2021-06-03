@@ -1,38 +1,77 @@
-# Cluster Provisioning
+# Project Edison
 
-Spectro Cloud Terraform module to help provision K8aaS use-cases.
+Config for the project
 
 ## Module
 
-- Provisions Spectro Cloud VMware clusters
-- Create IP Pool (1 for API, 1 for Workers)
-- Creates new ETCD encryption key per cluster
-- Uploads Kubeconfig and ETCD encryption key to Vault
-- Generates etcd healthclient certificate and stores to vault
-- Creates 3 netscaler service groups (API, Nodeport, and Ingress)
+- One or more account files account-aws-1.yaml
+- One or more cluster yaml files
 
-
-## Config
-
-### terraform.tfvars:
-
-1. Copy `terraform.template.tfvars` to `terraform.tfvars`.
-2. Specify all values in `terraform.tfvars`.
-
-### config/
-
-Look through all the config in `config/` directory. Modify all as needed.
-
-### main.tf
-
-Specify all values.
-
-## Initialize
+## Cluster YAML
 
 ```
-terraform init \
-  -upgrade \
-  -backend-config="access_key=access" \
-  -backend-config="secret_key=key"
+name: eks-dev-1
+cloud_account: aws-account-1
+profiles:
+- name: ProdEKS-1
+  components:
+  - TODO
+cloud_config:
+  aws_region: us-east-1
+  aws_vpc_id: vpc-0c9679602584608f9
+  eks_subnets:
+    us-west-2a: subnet-07f0af093b8233990,subnet-080b9dc42d15b57a2
+    us-west-2b: subnet-0e0d96dc7ad3f02a5,subnet-025428faaddc4201f
+    us-west-2c: subnet-09e74165071ce03e6,subnet-0964e92baa663e495
+node_groups:
+- name: worker-basic
+  count: 3
+  disk_size_gb: 61
+  instance_type: t3.large
+  worker_subnets:
+    us-west-2a: subnet-07f0af093b8233990
+    us-west-2b: subnet-0e0d96dc7ad3f02a5
+    us-west-2c: subnet-09e74165071ce03e6
+fargate_profiles:
+- name: fg-1
+  subnets:
+  - subnet-07f0af093b8233990
+  - subnet-0e0d96dc7ad3f02a5
+  - subnet-09e74165071ce03e6
+  additional_tags: {hello: test1}
+  selectors:
+  - namespace: fargate
+    labels:
+      abc: cool
+rbac:
+  clusterRoleBindings:
+  - role: view
+    subjects:
+    - {type: User, name: user6}
+    - {type: Group, name: group6}
+    - {type: ServiceAccount, name: group6, namespace: foo}
+  namespaces:
+  - namespace: team2
+    createNamespace: true
+    roleBindings:
+    - role: admin
+      kind: ClusterRole
+      subjects:
+      - {type: Group, name: team-vendor-b}
+manifest_repos:
+- name: myapps
+  type: helm
+  url: https://github.com/spectrocloud/gitops-argocd.git
+  path: apps
+  namespace: team2
+terraform_repos:
+- name: kubeless-services
+  url: https://github.com/spectrocloud/gitops-picard.git
+  path: sandbox
+  state:
+    type: in-cluster-secret
+    namespace: team2
+
+
 ```
 
