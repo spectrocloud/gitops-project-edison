@@ -9,7 +9,7 @@ Config for the project
 
 ## Cluster YAML
 
-The yaml file
+The yaml file:
 ```
 name: eks-dev-1
 cloud_account: aws-account-1
