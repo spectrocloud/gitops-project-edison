@@ -54,9 +54,7 @@ jobs:
     - name: Terraform Validate
       id: validate
       run: terraform validate -no-color
-    
 
-          
     - name: Terraform Apply
       id: apply
       run: |
@@ -65,35 +63,35 @@ jobs:
         -var 'sc_project_name=${{ secrets.SC_PROJECT_NAME }}' \
         -var 'sc_username=${{ secrets.SC_USERNAME }}' \
         -var 'sc_password=${{ secrets.SC_PASSWORD }}'
-    - uses: jwalton/gh-find-current-pr@v1
-      id: findPr
-  
-    - uses: actions/github-script@v3
-      if: success() && steps.findPr.outputs.number
-      env:
-        PLAN: "terraform\n${{ steps.apply.outputs.stdout }}"
-        PR: ${{ steps.findPr.outputs.pr }}
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        script: |
-          const output = `#### Terraform Format and Style 🖌 \`${{ steps.fmt.outcome }}\`
-          #### Terraform Initialization ⚙️ \`${{ steps.init.outcome }}\`
-          #### Terraform Validation 🤖 ${{ steps.validate.outputs.stdout }}
-          #### Terraform Apply 📖 \`${{ steps.apply.outcome }}\`
+    # - uses: jwalton/gh-find-current-pr@v1
+    #   id: findPr
 
-          <details open><summary>Show Plan</summary>
+    # - uses: actions/github-script@v3
+    #   if: success() && steps.findPr.outputs.number
+    #   env:
+    #     PLAN: "terraform\n${{ steps.apply.outputs.stdout }}"
+    #     PR: ${{ steps.findPr.outputs.pr }}
+    #   with:
+    #     github-token: ${{ secrets.GITHUB_TOKEN }}
+    #     script: |
+    #       const output = `#### Terraform Format and Style 🖌 \`${{ steps.fmt.outcome }}\`
+    #       #### Terraform Initialization ⚙️ \`${{ steps.init.outcome }}\`
+    #       #### Terraform Validation 🤖 ${{ steps.validate.outputs.stdout }}
+    #       #### Terraform Apply 📖 \`${{ steps.apply.outcome }}\`
 
-          \`\`\`hcl
-          ${process.env.PLAN}
-          \`\`\`
+    #       <details open><summary>Show Plan</summary>
 
-          </details>
+    #       \`\`\`hcl
+    #       ${process.env.PLAN}
+    #       \`\`\`
 
-          *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Working Directory: \`${{ env.SPECTROCLOUD_TF_PATH }}\`, Workflow: \`${{ github.workflow }}\`*`;
+    #       </details>
 
-          github.issues.createComment({
-            issue_number: ${process.env.PR},
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            body: output
-          })
+    #       *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Working Directory: \`${{ env.SPECTROCLOUD_TF_PATH }}\`, Workflow: \`${{ github.workflow }}\`*`;
+
+    #       github.issues.createComment({
+    #         issue_number: ${process.env.PR},
+    #         owner: context.repo.owner,
+    #         repo: context.repo.repo,
+    #         body: output
+    #       })
