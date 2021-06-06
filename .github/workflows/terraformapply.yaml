@@ -65,7 +65,6 @@ jobs:
         -var 'sc_project_name=${{ secrets.SC_PROJECT_NAME }}' \
         -var 'sc_username=${{ secrets.SC_USERNAME }}' \
         -var 'sc_password=${{ secrets.SC_PASSWORD }}'
-      continue-on-error: true
     - uses: jwalton/gh-find-current-pr@v1
       id: findPr
   
