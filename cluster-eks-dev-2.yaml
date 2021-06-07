@@ -1,9 +1,8 @@
 name: eks-dev-2
 cloud_account: aws-account-1
 profiles:
-- name: ProdEKS-1
-  components:
-  - TODO
+  infra: ProdEKS-1
+  ehl: EHS-1.5-small
 cloud_config:
   aws_region: us-east-1
   aws_vpc_id: vpc-0c9679602584608f9
