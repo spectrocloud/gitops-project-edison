@@ -36,7 +36,7 @@ packs:
       value: engage
 - name: ehs-app1
   type: manifest
-  install-priority: 20
+  install-priority: 30
   argo_manifests:
   - name: ehs-app1
     namespace: ehs-app1
