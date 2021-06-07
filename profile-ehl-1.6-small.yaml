@@ -34,6 +34,14 @@ packs:
     parameters:
     - name: spark.super
       value: engage
+  - name: ehs-minio
+    namespace: ehs-minio
+    source:
+      chart: helm/minio
+      version: 6.8.0
+    parameters:
+    - name: minio.super
+      value: engage
 - name: ehs-app1
   type: manifest
   install-priority: 20
