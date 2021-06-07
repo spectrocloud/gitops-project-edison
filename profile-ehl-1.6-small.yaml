@@ -1,4 +1,4 @@
-name: EHS-1.5-small
+name: EHS-1.6-small
 description: EHS App 1.5
 type: add-on
 defaultRepoURL: 593235963820.dkr.ecr.us-west-2.amazonaws.com
