@@ -71,9 +71,6 @@ backup_policy:
   schedule: "0 0 * * SUN"
   backup_location: dev-s3
   prefix: weekly
-  expiry_in_hour: 7200
-  include_disks: true
-  include_cluster_resources: true
 scan_policy:
   configuration_scan_schedule: "0 0 * * SUN"
   penetration_scan_schedule: "0 0 * * SUN"

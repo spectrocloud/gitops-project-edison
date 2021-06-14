@@ -1,0 +1,5 @@
+name: dev-s3
+region: us-east-1
+bucket_name: valero-rishi
+arn: arn:aws:iam::593235963820:role/spectro-picard-aws
+external_id: tBiUXFrzs_SmURhRgIyWuYOLAjJRlqfoQeiaDgqldwg=
