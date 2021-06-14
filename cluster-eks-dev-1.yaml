@@ -58,6 +58,14 @@ terraform_repos:
   state:
     type: in-cluster-secret
     namespace: team2
+backup_policy:
+  schedule: "0 0 * * SUN"
+  backup_location: dev-s3
+  prefix: weekly
+scan_policy:
+  configuration_scan_schedule: "0 0 * * SUN"
+  penetration_scan_schedule: "0 0 * * SUN"
+  conformance_scan_schedule: "0 0 1 * *"
 
   # cluster_packs: {
   #   k8s: {
