@@ -27,6 +27,7 @@ jobs:
       with:
         repository: spectrocloud/gitops-tf-scripts
         path: tf-scripts
+        ref: policy-changes
     - uses: actions/checkout@v2
       with:
         path: tf-scripts/config

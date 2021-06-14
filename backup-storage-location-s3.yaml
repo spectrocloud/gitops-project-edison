@@ -1,8 +1,0 @@
-name: dev-s3
-is_default: true
-region: us-east-1
-bucket_name: valero-rishi
-s3:
-  credential_type: sts
-  arn: arn:aws:iam::593235963820:role/spectro-picard-aws
-  external_id: tBiUXFrzs_SmURhRgIyWuYOLAjJRlqfoQeiaDgqldwg=
