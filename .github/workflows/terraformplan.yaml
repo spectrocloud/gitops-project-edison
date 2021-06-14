@@ -30,6 +30,7 @@ jobs:
         ref: policy-changes
     - uses: actions/checkout@v2
       with:
+        ref: policy-changes
         path: tf-scripts/config
 
     - uses: hashicorp/setup-terraform@v1
