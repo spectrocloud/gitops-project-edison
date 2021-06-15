@@ -31,9 +31,11 @@ jobs:
       with:
         repository: spectrocloud/gitops-tf-scripts
         path: tf-scripts
+        ref: modules-changes
     - uses: actions/checkout@v2
       with:
         path: tf-scripts/config
+        ref: modules-changes
 
     - uses: hashicorp/setup-terraform@v1
 
