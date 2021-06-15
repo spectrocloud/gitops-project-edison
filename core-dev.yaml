@@ -1,4 +1,4 @@
-# Virtual Network  Infomration
+# Virtual Network Infomration
 name: dev
 vpc_cidr: "10.0.0.0/22"
 trusted_cidrs: ["104.177.8.104/29"]
