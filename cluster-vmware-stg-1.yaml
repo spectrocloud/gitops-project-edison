@@ -28,11 +28,9 @@ node_groups:
     network: VM Network
 rbac:
   clusterRoleBindings:
-  - role: view
+  - role: cluster-admin
     subjects:
-    - {type: User, name: user6}
-    - {type: Group, name: group6}
-    - {type: ServiceAccount, name: group6, namespace: foo}
+    - {type: Group, name: sc-admin}
   namespaces:
   - namespace: team2
     createNamespace: true
