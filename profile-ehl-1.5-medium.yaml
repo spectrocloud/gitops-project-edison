@@ -6,7 +6,7 @@ packs:
 - name: ehs-infra
   type: manifest
   install-priority: 10
-  argo_manifests:
+  helms:
   - name: ehs-rabbitmq
     namespace: ehs-rabbitmq
     source:
@@ -25,7 +25,7 @@ packs:
 - name: ehs-platform
   type: manifest
   install-priority: 20
-  argo_manifests:
+  helms:
   - name: ehs-spark
     namespace: ehs-spark
     source:
@@ -45,7 +45,7 @@ packs:
 - name: ehs-app1
   type: manifest
   install-priority: 30
-  argo_manifests:
+  helms:
   - name: ehs-app1
     namespace: ehs-app1
     source:
